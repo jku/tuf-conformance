@@ -15,13 +15,15 @@ runs:
         python-version: "3.11"
         cache: "pip"
 
-    - name: Install test
+    - name: Install test suite and dependencies
       run: |
         pip install -e "${{ github.action_path }}"
       shell: bash
 
     - name: Run test suite
-      id: sigstore-conformance
       run: |
+        pwd
+        ls "${{ inputs.entrypoint }}" || true
+        ls -l
         pytest tuf_conformance --entrypoint "${{ inputs.entrypoint }}"
       shell: bash
