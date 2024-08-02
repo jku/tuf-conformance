@@ -108,7 +108,7 @@ def test_root_rotation(client: ClientRunner,
 
     signers = []
     for _ in range(10):
-        signer = CryptoSigner.generate_ed25519()
+        signer = CryptoSigner.generate_ecdsa()
         signers.append(signer)
 
     # initialize a simulator with repository content we need
