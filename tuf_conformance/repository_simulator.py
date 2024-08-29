@@ -55,8 +55,6 @@ from tuf.api.metadata import (
 )
 from tuf.api.serialization.json import JSONSerializer
 
-from tuf_conformance.metadata import MetadataTest, RootTest
-
 logger = logging.getLogger(__name__)
 
 SPEC_VER = ".".join(SPECIFICATION_VERSION)
@@ -192,10 +190,10 @@ class RepositorySimulator:
     def _initialize(self) -> None:
         """Setup a minimal valid repository."""
 
-        self.mds[Targets.type] = MetadataTest(Targets(expires=self.safe_expiry))
-        self.mds[Snapshot.type] = MetadataTest(Snapshot(expires=self.safe_expiry))
-        self.mds[Timestamp.type] = MetadataTest(Timestamp(expires=self.safe_expiry))
-        self.mds[Root.type] = MetadataTest(RootTest(expires=self.safe_expiry))
+        self.mds[Targets.type] = Metadata(Targets(expires=self.safe_expiry))
+        self.mds[Snapshot.type] = Metadata(Snapshot(expires=self.safe_expiry))
+        self.mds[Timestamp.type] = Metadata(Timestamp(expires=self.safe_expiry))
+        self.mds[Root.type] = Metadata(Root(expires=self.safe_expiry))
 
         for role in TOP_LEVEL_ROLE_NAMES:
             signer = self.new_signer()

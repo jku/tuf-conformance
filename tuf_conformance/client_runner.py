@@ -6,7 +6,6 @@ from tempfile import TemporaryDirectory
 from tuf.api.exceptions import StorageError
 from tuf.api.metadata import Metadata
 
-from tuf_conformance.metadata import MetadataTest
 from tuf_conformance.simulator_server import (
     ClientInitData,
     SimulatorServer,
@@ -102,7 +101,7 @@ class ClientRunner:
         version
         """
         try:
-            md = MetadataTest.from_file(os.path.join(self.metadata_dir, f"{role}.json"))
+            md = Metadata.from_file(os.path.join(self.metadata_dir, f"{role}.json"))
         except StorageError:
             return None
         return md.signed.version
