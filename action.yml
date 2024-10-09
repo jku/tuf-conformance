@@ -17,10 +17,11 @@ runs:
     - name: Set up Python
       uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
       with:
-        python-version: "3.11"
+        python-version: "pypy3.10"
 
     - name: Install test
       run: |
+        python --version
         echo "::group::Install test suite and dependencies"
         sudo apt install faketime
         pip install -e "${{ github.action_path }}"
